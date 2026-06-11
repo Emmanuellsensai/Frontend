@@ -76,7 +76,7 @@ func main() {
     mux.HandleFunc("/ascii-art", asciiHandler)  // POST → generate art
 
     fs := http.FileServer(http.Dir("static"))
-    http.Handle("/static/", http.StripPrefix("/static/", fs))
+    mux.Handle("/static/", http.StripPrefix("/static/", fs))
 
     http.ListenAndServe(":8083", mux)
 }
